@@ -32,6 +32,10 @@ let pageURL = `https://dogapi.dog/api/v2/breeds?page[number]=${currentPage}`; //
 
 const loader = rutik.getElementById("loader-container");
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function main() {
   showLoader();
   await fetchDogs();
@@ -43,7 +47,7 @@ async function main() {
 
 function showLoader() {
   console.log("loader shown");
-  loader.classList.add = "show";
+  loader.classList.add("show");
 }
 
 function hideLoader() {
@@ -85,7 +89,8 @@ function paginate() {
 
 paginate();
 
-function fetchDogs() {
+async function fetchDogs() {
+  await delay(3000);
   return fetch(`https://dogapi.dog/api/v2/breeds?page[number]=${currentPage}`) // berem sobak po linku z dynamichnoyu currentPage
     .then((response) => response.json()) // otrymuiem vidpovid i converts to json
     .then((response) => {
@@ -101,8 +106,8 @@ function fetchDogs() {
     });
 }
 
-function fetchBreeds() {
-  // get all breeds and
+async function fetchBreeds() {
+  await delay(2000);
   return fetch(allBreeds) //get all breeds with 'message' key in it
     .then((response) => response.json())
     .then((response) => {
@@ -137,9 +142,10 @@ function renderDogs() {
 
   dogs.forEach((dog) => {
     const listItem = rutik.createElement("li");
-    listItem.classList.add("sobaka");
+    listItem.classList.add("pesyk");
 
-    const dogName = rutik.createElement("h3"); // <h3>{name}</h3>
+    const dogName = rutik.createElement("h3");
+    dogName.classList.add("dog-title");
     const description = rutik.createElement("p");
     const breed = rutik.createElement("span");
     const image = rutik.createElement("img");

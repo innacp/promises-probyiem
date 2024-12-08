@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .wrapper {
+    position: relative;
     padding: 20px;
 }
 .page-list {
@@ -49,25 +56,47 @@ img {
     display: none;
 }
 
-.loader {
-    border: 1px solid black;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-}
 
-#loader.show {
+#loader-container.show {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
 }
 
+.loader-container img {
+    width: 200px;
+    height: auto;
+    animation: spin 6s linear infinite;
+}
 
-
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 
 
 h3 {
-    list-style-type: none;
+    color: #8A2BE2;
+    margin-bottom: 15px;
+    font-weight: 400;
 }
+
+.pesyk {
+    list-style: none;
+    padding: 15px;
+    border: 1px solid violet;
+    border-radius: 20px;
+    background-color: #f4e8ff;
+    margin-bottom: 25px;
+}
+
+
